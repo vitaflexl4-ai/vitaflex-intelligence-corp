@@ -1,0 +1,24 @@
+{
+  "name": "vitaflex-intelligence-corp",
+  "version": "3.0.0",
+  "description": "Vitaflex Intelligence Corp — Autonomous Command Center & Strategic Defense Terminal for Haiti & Caribbean Basin",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node build.js",
+    "sync": "node build.js",
+    "watch": "node watch.js",
+    "test": "node build.js",
+    "feature": "node -e \"const name = process.argv[2] || 'new-feature'; require('child_process').execSync('node build.js && git add . && git commit -m \\\"feat: ' + name + '\\\"', { stdio: 'inherit' });\""
+  },
+  "keywords": [
+    "vitaflex",
+    "intelligence",
+    "command-center",
+    "haiti",
+    "defense",
+    "cyber-hud"
+  ],
+  "author": "Vitaflex Business Group",
+  "license": "UNLICENSED"
+}
