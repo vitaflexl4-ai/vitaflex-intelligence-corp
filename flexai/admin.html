@@ -7,8 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';" />
+  <script src="assets/vendor/leaflet/leaflet.js"></script>
+  <script>
+    if (typeof L === 'undefined') {
+      document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\\/script>');
+    }
+  </script>
 
   <style>
     :root {
@@ -4576,6 +4581,44 @@
     (function() {
       'use strict';
 
+      // Tactical Satellite & Radar Map Engine Global State
+      let satMap = null;
+      let currentTileLayer = null;
+      let haitiBoundaryLayer = null;
+      let haitiBorderLineLayer = null;
+      let isHighlightOn = true;
+      let isThermal = false;
+
+      // HUD Toast Notification Engine
+      window.showHudToast = function(msg, duration = 3000) {
+        let toastContainer = document.getElementById('hud-toast-container');
+        if (!toastContainer) {
+          toastContainer = document.createElement('div');
+          toastContainer.id = 'hud-toast-container';
+          toastContainer.style.cssText = 'position: fixed; bottom: 80px; right: 24px; z-index: 99999; display: flex; flex-direction: column; gap: 8px; pointer-events: none;';
+          document.body.appendChild(toastContainer);
+        }
+
+        const toast = document.createElement('div');
+        toast.style.cssText = 'background: rgba(4, 10, 20, 0.95); border: 1px solid var(--cyan); border-radius: 6px; padding: 10px 16px; color: #ffffff; font-family: var(--font-mono); font-size: 11.5px; box-shadow: 0 0 20px rgba(0, 240, 255, 0.35); pointer-events: auto; display: flex; align-items: center; gap: 8px; transition: opacity 0.3s ease, transform 0.3s ease; transform: translateY(10px); opacity: 0;';
+        toast.innerHTML = msg;
+        toastContainer.appendChild(toast);
+
+        requestAnimationFrame(() => {
+          toast.style.transform = 'translateY(0)';
+          toast.style.opacity = '1';
+        });
+
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transform = 'translateY(10px)';
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+            else if (typeof toast.remove === 'function') toast.remove();
+          }, 300);
+        }, duration);
+      };
+
       // 1. Digital Clock
       function updateClock() {
         const now = new Date();
@@ -4611,15 +4654,24 @@
         // If satellite view opened, ensure Leaflet calculates dimensions immediately
         if (viewId === 'view-satellite') {
           setTimeout(() => {
-            if (!window.satMap) {
+            if (!satMap) {
               initSatelliteMap();
             } else {
-              window.satMap.invalidateSize();
+              satMap.invalidateSize(true);
+              const z = satMap.getZoom();
+              const c = satMap.getCenter();
+              if (isNaN(z) || z <= 0 || !c || isNaN(c.lat)) {
+                satMap.setView([18.9712, -72.2852], 8);
+              }
             }
-          }, 50);
+          }, 60);
           setTimeout(() => {
-            if (window.satMap) window.satMap.invalidateSize();
-          }, 250);
+            if (satMap) {
+              satMap.invalidateSize(true);
+              if (typeof syncLiveFlights === 'function') syncLiveFlights();
+              if (typeof syncLiveVessels === 'function') syncLiveVessels();
+            }
+          }, 300);
         }
 
         // If Cap-Haïtien municipal screener opened, init/resize Okap map
@@ -6207,21 +6259,31 @@
         mapContainer.style.width = '100%';
         mapContainer.style.height = '100%';
 
-        if (window.satMap) {
-          window.satMap.invalidateSize();
+        if (satMap || window.satMap) {
+          satMap = satMap || window.satMap;
+          satMap.invalidateSize(true);
+          const z = satMap.getZoom();
+          const c = satMap.getCenter();
+          if (isNaN(z) || z <= 0 || !c || isNaN(c.lat)) {
+            satMap.setView([18.9712, -72.2852], 8);
+          }
           return;
+        }
+
+        // Clean up previous partial initialization if container was stamped
+        if (mapContainer._leaflet_id) {
+          delete mapContainer._leaflet_id;
+          mapContainer.innerHTML = '';
         }
 
         // Initialize centered over Haiti
         satMap = L.map('satellite-map', {
           center: [18.9712, -72.2852],
           zoom: 8,
-          zoomControl: false,
+          zoomControl: true,
           attributionControl: false
         });
         window.satMap = satMap;
-
-        L.control.zoom({ position: 'bottomright' }).addTo(satMap);
 
         // Satellite Tile Layers (100% Free ESRI World Imagery & Transportation - No API Key Required)
         const esriLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
@@ -6242,21 +6304,21 @@
         esriLabelsLayer.addTo(satMap);
         esriTransLayer.addTo(satMap);
 
-        // Immediate and deferred invalidateSize calls to eliminate black screen
+        // Immediate and deferred invalidateSize calls to guarantee tile rendering
         satMap.whenReady(() => {
-          satMap.invalidateSize();
+          satMap.invalidateSize(true);
         });
-        setTimeout(() => { if (satMap) satMap.invalidateSize(); }, 150);
-        setTimeout(() => { if (satMap) satMap.invalidateSize(); }, 400);
-        setTimeout(() => { if (satMap) satMap.invalidateSize(); }, 800);
+        setTimeout(() => { if (satMap) satMap.invalidateSize(true); }, 100);
+        setTimeout(() => { if (satMap) satMap.invalidateSize(true); }, 300);
+        setTimeout(() => { if (satMap) satMap.invalidateSize(true); }, 700);
 
         // Movement listener for coordinate readout
         satMap.on('move', () => {
           const center = satMap.getCenter();
           const zoom = satMap.getZoom();
           const coordEl = document.getElementById('sat-coords');
-          if (coordEl) {
-            coordEl.textContent = `LAT: ${center.lat.toFixed(4)}° N • LON: ${center.lng.toFixed(4)}° W • ZOOM: ${zoom}x`;
+          if (coordEl && center && !isNaN(center.lat) && !isNaN(center.lng)) {
+            coordEl.textContent = `LAT: ${center.lat.toFixed(4)}° N • LON: ${center.lng.toFixed(4)}° W • ZOOM: ${zoom || 8}x`;
           }
         });
 
@@ -6276,11 +6338,20 @@
               }
             }).addTo(satMap);
 
-            // Auto-fit bounds so Haiti is beautifully framed on first view!
-            satMap.fitBounds(haitiBoundaryLayer.getBounds(), { padding: [20, 20] });
+            // Auto-fit bounds safely only if dimensions are positive
+            if (mapContainer.offsetWidth > 150 && mapContainer.offsetHeight > 150) {
+              try {
+                satMap.fitBounds(haitiBoundaryLayer.getBounds(), { padding: [30, 30], maxZoom: 9 });
+              } catch(e) {
+                satMap.setView([18.9712, -72.2852], 8);
+              }
+            } else {
+              satMap.setView([18.9712, -72.2852], 8);
+            }
           }
         } catch(err) {
           console.warn('[Haiti GeoJSON Load Note]', err);
+          satMap.setView([18.9712, -72.2852], 8);
         }
 
         // 2. Highlight 391 km Haiti-Dominican Republic Border Line (Tactical Red Laser Line)
@@ -6324,14 +6395,24 @@
         createTacticalMarker(18.5800, -72.2925, '✈️ Toussaint Louverture', 'safe', 'Air Logistics Corridor', 'Aviation freight gates & diplomatic transit link.');
         createTacticalMarker(18.5750, -72.3450, '⛽ Varreux Fuel Terminal', 'warn', 'Strategic Energy Depot', 'Primary hydrocarbon storage facilities.');
         createTacticalMarker(18.5200, -72.3700, '🛑 Martissant Bottleneck', 'danger', 'RN2 Transit Choke Point', 'Critical southern overland transit bottleneck.');
+
+        // Synchronize flight radar & AIS vessels
+        if (typeof syncLiveFlights === 'function') syncLiveFlights();
+        if (typeof syncLiveVessels === 'function') syncLiveVessels();
       }
 
       window.focusHaitiTerritory = function() {
-        if (!satMap || !haitiBoundaryLayer) {
-          if (satMap) satMap.flyTo([18.9712, -72.2852], 8);
-          return;
+        if (!satMap) initSatelliteMap();
+        if (!satMap) return;
+        if (haitiBoundaryLayer) {
+          try {
+            satMap.fitBounds(haitiBoundaryLayer.getBounds(), { padding: [25, 25], maxZoom: 9 });
+          } catch(e) {
+            satMap.setView([18.9712, -72.2852], 8);
+          }
+        } else {
+          satMap.setView([18.9712, -72.2852], 8);
         }
-        satMap.fitBounds(haitiBoundaryLayer.getBounds(), { padding: [20, 20], maxZoom: 9 });
         const nameEl = document.getElementById('sat-target-name');
         if (nameEl) nameEl.textContent = 'TARGET: Republic of Haiti (Full Sovereign Boundary)';
       };
@@ -6353,10 +6434,13 @@
       };
 
       window.focusSatTarget = function(lat, lng, zoom, name) {
+        if (!satMap) initSatelliteMap();
         if (!satMap) return;
         satMap.flyTo([lat, lng], zoom, { duration: 1.5 });
         const nameEl = document.getElementById('sat-target-name');
         if (nameEl) nameEl.textContent = `TARGET: ${name}`;
+        const coordsEl = document.getElementById('sat-coords');
+        if (coordsEl) coordsEl.textContent = `LAT: ${lat.toFixed(4)}° N • LON: ${lng.toFixed(4)}° W • ZOOM: ${zoom}x`;
       };
 
       window.toggleThermalMode = function() {
@@ -6374,18 +6458,23 @@
         }
       };
 
+      let satProviderIndex = 0;
+      const satProviders = [
+        { name: 'Layer: ESRI Satellite', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', options: { maxZoom: 19, attribution: 'ESRI World Imagery' } },
+        { name: 'Layer: Dark Tactical Radar', url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', options: { maxZoom: 19, subdomains: 'abcd', attribution: 'CartoDB Dark' } },
+        { name: 'Layer: Topographic Grid', url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', options: { maxZoom: 19, attribution: 'ESRI Topo' } }
+      ];
+
       window.toggleSatProvider = function() {
         if (!satMap || !currentTileLayer) return;
         satMap.removeLayer(currentTileLayer);
-        const label = document.getElementById('provider-label');
-        if (label && label.textContent.includes('Topo')) {
-          currentTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 });
-          if (label) label.textContent = 'Layer: ESRI Satellite';
-        } else {
-          currentTileLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', { maxZoom: 19 });
-          if (label) label.textContent = 'Layer: Topographic Grid';
-        }
+        satProviderIndex = (satProviderIndex + 1) % satProviders.length;
+        const prov = satProviders[satProviderIndex];
+        currentTileLayer = L.tileLayer(prov.url, prov.options);
         currentTileLayer.addTo(satMap);
+        const label = document.getElementById('provider-label');
+        if (label) label.textContent = prov.name;
+        showHudToast(`🛰 Switched to ${prov.name}`);
       };
 
       window.resetSatView = function() {
@@ -6708,8 +6797,10 @@
         });
       };
 
-      // Initialize map on startup
-      setTimeout(initSatelliteMap, 300);
+      // Initialize map on startup only if view-satellite is active, otherwise defer until user clicks tab
+      if (document.getElementById('view-satellite')?.classList.contains('active-view')) {
+        setTimeout(initSatelliteMap, 200);
+      }
 
       // 3. 3D Holographic Haitian Flag Gyroscope & Particle Core (Canvas)
       const holoCanvas = document.getElementById('holo-canvas');
@@ -8046,7 +8137,6 @@
       };
 
       // 12. Dynamic Live Intelligence Feed Loader for Admin HUD (100% Real, Zero Synthetic)
-      async 
       // REAL SOLANA ON-CHAIN TRADING & PHANTOM INTEGRATION
       let connectedSolanaWallet = null;
       const SOLANA_RPC_URL = 'https://api.mainnet-beta.solana.com';
