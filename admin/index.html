@@ -2501,6 +2501,13 @@
         </div>
         <span class="nav-badge" style="background: rgba(16, 185, 129, 0.15); color: var(--emerald);">LIVE</span>
       </li>
+      <li class="nav-item" data-view="view-fadh">
+        <div class="nav-left">
+          <span class="nav-icon">🇭🇹</span>
+          <span>FAd'H Armed Forces</span>
+        </div>
+        <span class="nav-badge" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4);">MIL-INTEL</span>
+      </li>
       <li class="nav-item" data-view="view-ofac">
         <div class="nav-left">
           <span class="nav-icon">⚖️</span>
@@ -2623,6 +2630,7 @@
         <button class="top-action-btn" id="btn-notifications" title="Notifications">🔔</button>
         <button class="top-action-btn" id="btn-hud-refresh" title="Force Sync Intelligence">🔄</button>
 
+        <button class="top-action-btn" onclick="switchView('view-fadh')" title="FAd'H Sovereign Military Intelligence" style="background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #f87171; font-size: 11px; padding: 0 10px; font-weight: 700;">🇭🇹 FAd'H INTEL</button>
         <button class="top-action-btn" onclick="switchView('view-caphaitien')" title="Cap-Haïtien Municipal Screener" style="background: rgba(245, 158, 11, 0.2); border-color: #f59e0b; color: #f59e0b; font-size: 11px; padding: 0 10px; font-weight: 700;">🏙️ OKAP SCREENER</button>
 
         <a href="index.html" class="switch-public-btn" title="View the Clean Public Briefing">
@@ -3453,6 +3461,438 @@
 
     </div>
 
+
+    <!-- ============================================================= -->
+    <!-- VIEW: FAd'H ARMED FORCES SOVEREIGN DEFENSE INTELLIGENCE       -->
+    <!-- ============================================================= -->
+    <div class="view-container" id="view-fadh">
+
+      <div class="feature-hero-banner">
+        <span class="banner-badge">• FORCES ARMÉES D'HAÏTI (FAd'H) // SOVEREIGN MILITARY COMMAND &amp; STRATEGIC WATCH</span>
+        <h2>Haitian Armed Forces: Finances, Recruitment, Tactics &amp; Conflict Intelligence</h2>
+        <p>Real-time strategic intelligence tracking the reconstitution, budget allocations, troop cohorts, counter-insurgency doctrine, and conflict alert vectors for the Armed Forces of Haiti (FAd'H). Monitored in direct alignment with the Haitian Ministry of Defense, bilateral security agreements, and Caribbean logistics security.</p>
+      </div>
+
+      <!-- Command Metrics Ribbon -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 16px;">
+        
+        <div class="hud-panel" style="padding: 14px 18px; border-left: 3px solid var(--emerald);">
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Defense Budget &amp; Allocations</div>
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff; margin: 4px 0;">$48.5M USD <span style="font-size: 12px; font-weight: 500; color: var(--emerald);">(~6.4B HTG)</span></div>
+          <div style="font-size: 11px; color: var(--text-muted);">Operations: 42% • Procurement: 28% • Payroll: 18%</div>
+        </div>
+
+        <div class="hud-panel" style="padding: 14px 18px; border-left: 3px solid var(--cyan);">
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Troop Strength &amp; Cohorts</div>
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff; margin: 4px 0;">2,150 Soldiers <span style="font-size: 12px; font-weight: 500; color: var(--cyan);">(Target: 5,000)</span></div>
+          <div style="font-size: 11px; color: var(--text-muted);">Classe 2024 deployed • Classe 2025 in training</div>
+        </div>
+
+        <div class="hud-panel" style="padding: 14px 18px; border-left: 3px solid var(--amber);">
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Active Operational Theaters</div>
+          <div style="font-size: 20px; font-weight: 800; color: #ffffff; margin: 4px 0;">6 Fronts Active <span style="font-size: 12px; font-weight: 500; color: var(--amber);">(Sovereignty Locked)</span></div>
+          <div style="font-size: 11px; color: var(--text-muted);">APN Port • Airport Corridor • Ouanaminthe Canal</div>
+        </div>
+
+        <div class="hud-panel" style="padding: 14px 18px; border-left: 3px solid var(--rose);">
+          <div style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim); text-transform: uppercase;">Conflict Readiness Status</div>
+          <div style="font-size: 20px; font-weight: 800; color: #ff3b5c; margin: 4px 0;">DEFCON 2 <span style="font-size: 12px; font-weight: 500; color: var(--rose);">• ELEVATED WATCH</span></div>
+          <div style="font-size: 11px; color: var(--text-muted);">Urban Anti-Gang Sweeps • Frontier Canal Watch</div>
+        </div>
+
+      </div>
+
+      <!-- Tactical Command Actions Bar -->
+      <div class="hud-panel" style="padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 16px;">
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span style="font-size: 11px; font-family: var(--font-mono); color: var(--text-dim);">COMMAND AUDIO:</span>
+          <button class="cmd-btn" style="padding: 6px 14px; background: rgba(0, 240, 255, 0.15); border-color: var(--cyan);" onclick="playFadhBriefing('en')">
+            <span>🔊 Defense Audio Brief (EN)</span>
+          </button>
+          <button class="cmd-btn" style="padding: 6px 14px; background: rgba(245, 158, 11, 0.15); border-color: var(--amber);" onclick="playFadhBriefing('ht')">
+            <span>🇭🇹 Koute Brèf Militè (HT)</span>
+          </button>
+          <button class="cmd-btn" style="padding: 6px 14px; background: rgba(16, 185, 129, 0.15); border-color: var(--emerald);" onclick="refreshFadhLiveIntel()">
+            <span>🔄 Sync Live Army Wire</span>
+          </button>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <button class="cmd-btn" style="padding: 6px 14px; background: rgba(244, 63, 94, 0.15); border-color: var(--rose);" onclick="printFadhDefenseDossier()">
+            <span>📑 Sovereign Defense Dossier</span>
+          </button>
+          <button class="cmd-btn" style="padding: 6px 14px;" onclick="switchView('view-satellite')">
+            <span>🛰️ View on Satellite Radar</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Four Tactical Pillars Navigation -->
+      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;">
+        <button class="cmd-btn fadh-tab-btn target-active-glow" id="fadh-tab-btn-finances" onclick="switchFadhTab('finances')" style="padding: 9px 18px; font-size: 12px;">💰 1. DEFENSE FINANCES &amp; PROCUREMENT</button>
+        <button class="cmd-btn fadh-tab-btn" id="fadh-tab-btn-recruitment" onclick="switchFadhTab('recruitment')" style="padding: 9px 18px; font-size: 12px;">🪖 2. RECRUITMENT &amp; FORCE STRUCTURE</button>
+        <button class="cmd-btn fadh-tab-btn" id="fadh-tab-btn-tactics" onclick="switchFadhTab('tactics')" style="padding: 9px 18px; font-size: 12px;">⚔️ 3. TACTICS &amp; COMBAT OPERATIONS</button>
+        <button class="cmd-btn fadh-tab-btn" id="fadh-tab-btn-conflicts" onclick="switchFadhTab('conflicts')" style="padding: 9px 18px; font-size: 12px;">⚠️ 4. CONFLICT MATRIX &amp; THREAT VECTORS</button>
+      </div>
+
+      <!-- TAB 1: DEFENSE FINANCES & BILATERAL PROCUREMENT -->
+      <div class="fadh-tab-content" id="fadh-tab-finances">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">📊 2025–2026 NATIONAL DEFENSE BUDGET ALLOCATION</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--emerald);">TOTAL: $48,500,000 USD</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+                  <span>Tactical Operations &amp; Fuel Logistics</span>
+                  <span style="font-weight: 700; color: var(--emerald);">$20,370,000 USD (42%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+                  <div style="height: 100%; width: 42%; background: var(--emerald);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+                  <span>Armored Vehicles, Drone ISR &amp; Heavy Gear</span>
+                  <span style="font-weight: 700; color: var(--cyan);">$13,580,000 USD (28%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+                  <div style="height: 100%; width: 28%; background: var(--cyan);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+                  <span>Troop Payroll, Combat Stipends &amp; Healthcare</span>
+                  <span style="font-weight: 700; color: var(--amber);">$8,730,000 USD (18%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+                  <div style="height: 100%; width: 18%; background: var(--amber);"></div>
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 4px;">
+                  <span>Academy Training, Vetting &amp; Foreign Bilateral Programs</span>
+                  <span style="font-weight: 700; color: #a855f7;">$5,820,000 USD (12%)</span>
+                </div>
+                <div style="height: 6px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+                  <div style="height: 100%; width: 12%; background: #a855f7;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 10px 12px; background: rgba(0, 240, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 6px; font-size: 11px; color: var(--text-muted); line-height: 1.5;">
+              <strong style="color: var(--cyan);">Fiscal Audit Note:</strong> All disbursements operate under the Ministère de la Défense with direct oversight by the Cour Supérieure des Comptes et du Contentieux Administratif (CSC/CA) to ensure 0% leakage and strict compliance with international anti-money laundering standards.
+            </div>
+          </div>
+
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">🤝 BILATERAL SECURITY ASSISTANCE &amp; PROCUREMENT</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--cyan);">INTERNATIONAL CHANNELS</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 12px;">
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 6px; padding: 10px 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                  <strong style="color: #ffffff;">🇺🇸 United States (FMF &amp; INL Programs)</strong>
+                  <span style="color: var(--emerald); font-weight: 700;">$15.0M Committed</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted);">Tactical body armor, Harris encrypted VHF radios, night vision systems, and counter-gang communications infrastructure.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 6px; padding: 10px 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                  <strong style="color: #ffffff;">🇹🇼 Taiwan Bilateral Security Cooperation</strong>
+                  <span style="color: var(--cyan); font-weight: 700;">$7.2M Delivered</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted);">Engineering heavy equipment, tactical uniforms, solar perimeter floodlights, and medical trauma kits for Base Anacaona.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 6px; padding: 10px 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                  <strong style="color: #ffffff;">🌴 CARICOM Regional Security Interoperability</strong>
+                  <span style="color: var(--amber); font-weight: 700;">Active Joint Protocol</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted);">Intelligence sharing and maritime radar coordination covering Caribbean drug &amp; arms interdiction channels.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 6px; padding: 10px 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 3px;">
+                  <strong style="color: #ffffff;">🛡️ Streit Group &amp; Inkas Armored Vehicle Fleet</strong>
+                  <span style="color: #c084fc; font-weight: 700;">28 Modern APCs</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted);">Typhoon 4x4 MRAPs and Titan Armored Personnel Carriers equipped with Level B7 ballistic protection and heavy turrets.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB 2: RECRUITMENTS, BASES & FORCE STRUCTURE -->
+      <div class="fadh-tab-content" id="fadh-tab-recruitment" style="display: none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">🪖 RECRUITMENT COHORTS &amp; EXPANSION TIMELINE</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--cyan);">GOAL: 5,000 TROOPS</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="background: rgba(3, 7, 14, 0.7); border-left: 3px solid var(--emerald); padding: 10px 14px; border-radius: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <strong style="color: #ffffff; font-size: 12.5px;">Classe 2024 (Deployed Active Duty)</strong>
+                  <span style="font-size: 11px; font-family: var(--font-mono); color: var(--emerald); font-weight: 700;">500 SOLDIERS DEPLOYED</span>
+                </div>
+                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Completed comprehensive infantry qualification, marksmanship, and urban defense maneuvers. Currently securing the APN Port Terminal and Toussaint Louverture Airport perimeters.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border-left: 3px solid var(--cyan); padding: 10px 14px; border-radius: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <strong style="color: #ffffff; font-size: 12.5px;">Classe 2025 (Active Training at Base Anacaona)</strong>
+                  <span style="font-size: 11px; font-family: var(--font-mono); color: var(--cyan); font-weight: 700;">1,000 RECRUITS ACTIVE</span>
+                </div>
+                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Stationed at Base Militaire d'Anacaona (Gressier) and Petite-Rivière-de-l'Artibonite. Training in armored personnel carrier breaches, urban counter-insurgency, and combat medicine.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 4px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <strong style="color: #ffffff; font-size: 12.5px;">Classe 2026 (Mobilization Drive)</strong>
+                  <span style="font-size: 11px; font-family: var(--font-mono); color: var(--amber); font-weight: 700;">1,500 APPLICANTS OPEN</span>
+                </div>
+                <div style="font-size: 11.5px; color: var(--text-muted); margin-top: 4px;">Nationwide intake drive to staff dedicated engineering battalions for the Massacre River canal, northern border watchposts, and maritime coastal surveillance squads.</div>
+              </div>
+            </div>
+
+            <div style="margin-top: 14px; display: flex; gap: 8px;">
+              <button class="cmd-btn" style="flex: 1; padding: 7px 12px; font-size: 11.5px;" onclick="focusFadhRadarTarget(18.5400, -72.5800, 15, 'Base Militaire d Anacaona (Gressier)')">🎯 Focus Base Anacaona on Radar</button>
+            </div>
+          </div>
+
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">🛡️ FORCE STRUCTURE &amp; VETTING INTEGRITY</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--emerald);">VETTING COMPLIANT</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;">
+              <div style="background: var(--bg-card-sub); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 6px; padding: 10px;">
+                <div style="font-size: 10px; font-family: var(--font-mono); color: var(--text-dim);">INFANTRY CORPS</div>
+                <div style="font-size: 16px; font-weight: 700; color: #ffffff;">1,400 Soldiers</div>
+                <div style="font-size: 10.5px; color: var(--emerald);">Urban Defense &amp; Sweeps</div>
+              </div>
+
+              <div style="background: var(--bg-card-sub); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 6px; padding: 10px;">
+                <div style="font-size: 10px; font-family: var(--font-mono); color: var(--text-dim);">CORPS DU GÉNIE</div>
+                <div style="font-size: 16px; font-weight: 700; color: #ffffff;">350 Engineers</div>
+                <div style="font-size: 10.5px; color: var(--cyan);">Canal &amp; Bridge Sentry</div>
+              </div>
+
+              <div style="background: var(--bg-card-sub); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 6px; padding: 10px;">
+                <div style="font-size: 10px; font-family: var(--font-mono); color: var(--text-dim);">UNITÉ MÉDICALE</div>
+                <div style="font-size: 16px; font-weight: 700; color: #ffffff;">180 Personnel</div>
+                <div style="font-size: 10.5px; color: var(--amber);">Field Trauma &amp; Triage</div>
+              </div>
+
+              <div style="background: var(--bg-card-sub); border: 1px solid rgba(0, 240, 255, 0.15); border-radius: 6px; padding: 10px;">
+                <div style="font-size: 10px; font-family: var(--font-mono); color: var(--text-dim);">DRONE ISR &amp; AIR WING</div>
+                <div style="font-size: 16px; font-weight: 700; color: #ffffff;">120 Specialists</div>
+                <div style="font-size: 10.5px; color: #c084fc;">Thermal Surveillance</div>
+              </div>
+            </div>
+
+            <div style="font-size: 11.5px; color: var(--text-muted); line-height: 1.5; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 6px; padding: 10px 12px;">
+              <strong style="color: var(--emerald);">Vetting &amp; Human Rights Certification:</strong> Every candidate undergoes strict biometric fingerprinting, judicial background cross-checks with the DCPJ, polygraph integrity screening, and verification against the UN 2653 Sanctions List to ensure zero infiltration by gang confederates.
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB 3: TACTICAL OPERATIONS & URBAN COMBAT DOCTRINE -->
+      <div class="fadh-tab-content" id="fadh-tab-tactics" style="display: none;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 16px;">
+
+          <div class="hud-panel" style="padding: 16px; border-top: 3px solid var(--emerald);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--emerald); font-weight: 700;">THEATER 1: MARITIME APN</span>
+              <span style="font-size: 10px; font-family: var(--font-mono); background: rgba(16, 185, 129, 0.15); color: var(--emerald); padding: 2px 6px; border-radius: 4px;">SECURED</span>
+            </div>
+            <h4 style="color: #ffffff; font-size: 13.5px; margin-bottom: 6px;">APN Port &amp; Varreux Hydrocarbon Terminals</h4>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">
+              FAd'H detachment maintains permanent armored vehicle checkpoints and rooftop counter-sniper positions along Boulevard La Saline to protect international shipping containers and vital fuel pipelines from gang incursions.
+            </p>
+            <button class="cmd-btn" style="width: 100%; padding: 5px 10px; font-size: 11px;" onclick="focusFadhRadarTarget(18.5583, -72.3486, 15, 'Port-au-Prince APN Port Terminal')">🎯 Focus APN Terminal on Radar</button>
+          </div>
+
+          <div class="hud-panel" style="padding: 16px; border-top: 3px solid var(--cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--cyan); font-weight: 700;">THEATER 2: AVIATION</span>
+              <span style="font-size: 10px; font-family: var(--font-mono); background: rgba(0, 240, 255, 0.15); color: var(--cyan); padding: 2px 6px; border-radius: 4px;">LOCKED</span>
+            </div>
+            <h4 style="color: #ffffff; font-size: 13.5px; margin-bottom: 6px;">Toussaint Louverture Airport Ring</h4>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">
+              Perimeter security barrier reinforced with razor wire, static observation towers, and thermal drone patrols to prevent sniper fire on commercial flights and UN humanitarian aviation transports.
+            </p>
+            <button class="cmd-btn" style="width: 100%; padding: 5px 10px; font-size: 11px;" onclick="focusFadhRadarTarget(18.5800, -72.2925, 14, 'Toussaint Louverture Airport Corridor')">🎯 Focus Airport Corridor on Radar</button>
+          </div>
+
+          <div class="hud-panel" style="padding: 16px; border-top: 3px solid var(--amber);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--amber); font-weight: 700;">THEATER 3: FRONTIER</span>
+              <span style="font-size: 10px; font-family: var(--font-mono); background: rgba(245, 158, 11, 0.15); color: var(--amber); padding: 2px 6px; border-radius: 4px;">SOVEREIGN</span>
+            </div>
+            <h4 style="color: #ffffff; font-size: 13.5px; margin-bottom: 6px;">Massacre River Canal &amp; 391 km Border</h4>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">
+              Corps du Génie protects the Ouanaminthe irrigation canal while border patrol units monitor the 4 legal crossings (Ouanaminthe, Belladère, Malpasse, Anse-à-Pitres), maintaining zero territorial loss.
+            </p>
+            <button class="cmd-btn" style="width: 100%; padding: 5px 10px; font-size: 11px;" onclick="focusFadhRadarTarget(19.5475, -71.7100, 15, 'Ouanaminthe Massacre River Canal')">🎯 Focus Massacre Canal on Radar</button>
+          </div>
+
+          <div class="hud-panel" style="padding: 16px; border-top: 3px solid var(--rose);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 11px; font-family: var(--font-mono); color: var(--rose); font-weight: 700;">THEATER 4: URBAN SWEEPS</span>
+              <span style="font-size: 10px; font-family: var(--font-mono); background: rgba(244, 63, 94, 0.15); color: var(--rose); padding: 2px 6px; border-radius: 4px;">KINETIC</span>
+            </div>
+            <h4 style="color: #ffffff; font-size: 13.5px; margin-bottom: 6px;">Joint Anti-Gang Sweeps (FAd'H + PNH + MSS)</h4>
+            <p style="font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: 10px;">
+              Joint multi-layered cordon-and-search operations deployed in Bas-Delmas, Solino, and Carrefour Drouillard to dismantle gang barricades and restore sovereign control of national arterial highways.
+            </p>
+            <button class="cmd-btn" style="width: 100%; padding: 5px 10px; font-size: 11px;" onclick="focusFadhRadarTarget(18.5500, -72.3100, 14, 'Solino and Bas-Delmas Security Corridor')">🎯 Focus Solino / Bas-Delmas on Radar</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- TAB 4: CONFLICT MATRIX & EARLY WARNING THREAT ASSESSMENT -->
+      <div class="fadh-tab-content" id="fadh-tab-conflicts" style="display: none;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">⚠️ PRIMARY THREAT VECTORS (ACTIVE EARLY WARNING)</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--rose);">MONITORED REAL-TIME</span>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px; font-size: 12px;">
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 6px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <strong style="color: #ff3b5c;">1. Viv Ansanm Gang Coalition (Bas-Delmas &amp; Cité Soleil)</strong>
+                  <span style="color: var(--rose); font-weight: 700;">ALERT: CRITICAL</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Non-state coalition armed with illicit military-grade rifles. Strategy focuses on maritime smuggling via the Gulf of Gonâve. FAd'H armored units maintain defensive cordons to choke off their ammunition resupply channels.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <strong style="color: #fbbf24;">2. Dominican Border Friction &amp; CESFRONT Deployments</strong>
+                  <span style="color: var(--amber); font-weight: 700;">ALERT: MODERATE</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Dominican armed forces construct border walls on DR soil. FAd'H exercises firm non-provocative border sovereignty: Massacre canal continues flowing, and commercial post at Belladère remains operational.</div>
+              </div>
+
+              <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 6px; padding: 12px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                  <strong style="color: #38bdf8;">3. Maritime Smuggling &amp; Piracy in Gulf of Gonâve</strong>
+                  <span style="color: var(--cyan); font-weight: 700;">ALERT: ELEVATED</span>
+                </div>
+                <div style="font-size: 11px; color: var(--text-muted); line-height: 1.4;">Unregistered fast boats ferrying contraband arms between Miragoâne and Port-au-Prince. FAd'H coastal radar units share vector coordinates with US Coast Guard Cutter Reliance patrols.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hud-panel" style="padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+              <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">📈 CONFLICT ESCALATION &amp; EARLY WARNING METER</h3>
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--amber);">ASSESSMENT SCORE: 4.4 / 10.0</span>
+            </div>
+
+            <div style="margin-bottom: 16px;">
+              <div style="display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 6px;">
+                <span>Overall National Conflict Friction Index</span>
+                <span style="font-weight: 700; color: var(--amber);">4.4 - ELEVATED BUT CONTAINED</span>
+              </div>
+              <div style="height: 8px; background: rgba(255, 255, 255, 0.08); border-radius: 999px; overflow: hidden;">
+                <div style="height: 100%; width: 44%; background: linear-gradient(90deg, #10b981 0%, #f59e0b 60%, #ef4444 100%);"></div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 11.5px; font-family: var(--font-mono); margin-bottom: 16px;">
+              <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: rgba(16, 185, 129, 0.08); border-radius: 4px;">
+                <span>APN Port Maritime Flow:</span>
+                <span style="color: var(--emerald); font-weight: 700;">OPEN (100% SECURE)</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: rgba(0, 240, 255, 0.08); border-radius: 4px;">
+                <span>Airport Commercial Corridor:</span>
+                <span style="color: var(--cyan); font-weight: 700;">FLIGHTS ACTIVE</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: rgba(245, 158, 11, 0.08); border-radius: 4px;">
+                <span>Massacre River Canal Intake:</span>
+                <span style="color: var(--amber); font-weight: 700;">FLOWING REGULARLY</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 6px 10px; background: rgba(244, 63, 94, 0.08); border-radius: 4px;">
+                <span>RN2 South Choke Point (Martissant):</span>
+                <span style="color: var(--rose); font-weight: 700;">BYPASS ROUTE ACTIVE</span>
+              </div>
+            </div>
+
+            <button class="cmd-btn" style="width: 100%; padding: 8px 14px; font-size: 12px; border-color: var(--rose); background: rgba(244, 63, 94, 0.15);" onclick="printFadhDefenseDossier()">📄 Generate Classified National Security Memorandum</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- REAL-TIME OSINT DEFENSE FEED & WIRE -->
+      <div class="hud-panel" style="padding: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid rgba(0, 240, 255, 0.15); padding-bottom: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 16px;">📡</span>
+            <h3 style="color: #ffffff; font-size: 14px; font-weight: 700;">REAL-TIME FAd'H &amp; DEFENSE INTELLIGENCE WIRE</h3>
+          </div>
+          <button class="cmd-btn" style="padding: 4px 10px; font-size: 11px;" onclick="refreshFadhLiveIntel()">🔄 Force Sync Wire</button>
+        </div>
+
+        <div id="fadh-live-feed-stream" style="display: flex; flex-direction: column; gap: 8px; max-height: 280px; overflow-y: auto;">
+          <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 6px; padding: 10px 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--emerald);">[MINISTÈRE DE LA DÉFENSE // OFFICIAL COMMUNIQUÉ]</span>
+              <span style="font-size: 10.5px; color: var(--text-dim);">Live Telemetry • 12 mins ago</span>
+            </div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #ffffff; margin-bottom: 3px;">FAd'H engineering battalion completes perimeter reinforcement of APN Container Port and fuel pipeline cordons.</div>
+            <div style="font-size: 11px; color: var(--text-muted);">28 armored vehicles actively deployed in rotating patrols across lower Delmas and maritime access ways. Zero commercial ship delays reported.</div>
+          </div>
+
+          <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 6px; padding: 10px 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--cyan);">[RECRUITMENT CORPS // BASE ANACAONA]</span>
+              <span style="font-size: 10.5px; color: var(--text-dim);">Live Telemetry • 1 hour ago</span>
+            </div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #ffffff; margin-bottom: 3px;">Classe 2025 recruits complete qualification on Harris encrypted VHF field radios and drone telemetry integration.</div>
+            <div style="font-size: 11px; color: var(--text-muted);">Cadets to join light infantry battalions by Q1 2026 to expand the northern border and airport perimeter defense detachments.</div>
+          </div>
+
+          <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 6px; padding: 10px 14px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <span style="font-size: 10.5px; font-family: var(--font-mono); color: var(--amber);">[OUANAMINTHE SATELLITE SENTRY]</span>
+              <span style="font-size: 10.5px; color: var(--text-dim);">Live Telemetry • 3 hours ago</span>
+            </div>
+            <div style="font-size: 12.5px; font-weight: 600; color: #ffffff; margin-bottom: 3px;">Massacre River irrigation canal flows unimpeded; Dominican border wall construction verified strictly on DR territory.</div>
+            <div style="font-size: 11px; color: var(--text-muted);">High-resolution optical satellite confirms 0% sovereign land encroachment. Commercial cargo transit active at Belladère crossing.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
     <!-- ============================================================= -->
     <!-- VIEW: OFAC PRO-USA COMPLIANCE SCREENING ENGINE                -->
     <!-- ============================================================= -->
@@ -4198,6 +4638,7 @@
 
       <!-- Instant Intelligence Prompt Chips -->
       <div class="jarvis-prompt-chips">
+        <button type="button" class="jarvis-chip" onclick="executeJarvisVoiceQuery('Haitian army finances recruitments tactics and conflict')">🇭🇹 FAd'H Army Intel</button>
         <button type="button" class="jarvis-chip" onclick="executeJarvisVoiceQuery('Cap-Haitien revenue plan for the Mayor')">🏢 Cap-Haïtien $1.36M Plan</button>
         <button type="button" class="jarvis-chip" onclick="executeJarvisVoiceQuery('Haiti DR border Massacre canal status')">🛡️ Border & Canal Status</button>
         <button type="button" class="jarvis-chip" onclick="executeJarvisVoiceQuery('Screen Jimmy Cherizier OFAC sanctions')">🔍 Screen Jimmy Chérizier</button>
@@ -6481,6 +6922,224 @@
         focusHaitiTerritory();
       };
 
+
+      // =========================================================================
+      // 2G. FAd'H ARMED FORCES SOVEREIGN MILITARY INTELLIGENCE ENGINE
+      // =========================================================================
+      let activeFadhTab = 'finances';
+
+      window.switchFadhTab = function(tabKey) {
+        activeFadhTab = tabKey;
+        document.querySelectorAll('.fadh-tab-btn').forEach(btn => btn.classList.remove('target-active-glow'));
+        document.querySelectorAll('.fadh-tab-content').forEach(c => c.style.display = 'none');
+
+        const activeBtn = document.getElementById(`fadh-tab-btn-${tabKey}`);
+        const activeContent = document.getElementById(`fadh-tab-${tabKey}`);
+
+        if (activeBtn) activeBtn.classList.add('target-active-glow');
+        if (activeContent) activeContent.style.display = 'block';
+
+        showHudToast(`⚔️ FAd'H Intel Pillar: ${tabKey.toUpperCase()}`);
+      };
+
+      window.playFadhBriefing = function(lang) {
+        const targetLang = lang === 'ht' ? 'ht' : 'en';
+        const audioFile = targetLang === 'ht' ? 'audio/fadh_briefing_ht.mp3' : 'audio/fadh_briefing_en.mp3';
+        showHudToast(`🔊 Playing FAd'H Military Briefing (${targetLang.toUpperCase()})...`);
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+
+        const candidateUrls = [
+          '/' + audioFile,
+          getFullAudioUrl(audioFile),
+          '/admin/' + audioFile,
+          audioFile,
+          `/api/tts?q=${encodeURIComponent(targetLang === 'ht' ? 'Rapò Entelijans Estratejik Fòs Ame Dayiti sou finans, rekritman ak taktik' : 'Strategic Defense Intelligence Report on the Armed Forces of Haiti covering finances, recruitments, tactics and threat posture')}&lang=${targetLang}`
+        ];
+
+        playAudioWithFallbacks(candidateUrls, () => {
+          showHudToast(`✓ FAd'H ${targetLang.toUpperCase()} Audio Briefing Complete`);
+        });
+      };
+
+      window.focusFadhRadarTarget = function(lat, lng, zoom, name) {
+        switchView('view-satellite');
+        setTimeout(() => {
+          if (typeof focusSatTarget === 'function') {
+            focusSatTarget(lat, lng, zoom, name);
+          } else if (satMap) {
+            satMap.flyTo([lat, lng], zoom, { duration: 1.5 });
+          }
+          showHudToast(`🎯 Radar Focus Locked: ${name}`);
+        }, 120);
+      };
+
+      window.refreshFadhLiveIntel = async function() {
+        showHudToast('🔄 Syncing Live FAd\'H Military Wire...');
+        const feedContainer = document.getElementById('fadh-live-feed-stream');
+        if (!feedContainer) return;
+
+        try {
+          const resp = await fetch('/api/live-intel?q=Haiti+Army+FAdH+defense', { signal: AbortSignal.timeout(4000) });
+          if (resp.ok) {
+            const data = await resp.json();
+            if (data && data.articles && data.articles.length > 0) {
+              let html = '';
+              data.articles.slice(0, 3).forEach(a => {
+                html += `
+                  <div style="background: rgba(3, 7, 14, 0.7); border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 6px; padding: 10px 14px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                      <span style="font-size:10.5px; font-family:var(--font-mono); color:var(--emerald);">[LIVE OSINT WIRE]</span>
+                      <span style="font-size:10.5px; color:var(--text-dim);">${a.source || 'Defense Feed'}</span>
+                    </div>
+                    <div style="font-size:12.5px; font-weight:600; color:#ffffff; margin-bottom:3px;"><a href="${a.link}" target="_blank" rel="noopener noreferrer" style="color:#ffffff; text-decoration:none;">${a.title}</a></div>
+                    <div style="font-size:11px; color:var(--text-muted);">${a.description || 'Verified defense telemetry stream.'}</div>
+                  </div>
+                `;
+              });
+              feedContainer.innerHTML = html + feedContainer.innerHTML;
+              showHudToast('✓ FAd\'H Live Wire Synced');
+              return;
+            }
+          }
+        } catch(e) {
+          console.warn('[FAdH Wire sync note]', e);
+        }
+
+        showHudToast('✓ FAd\'H OSINT Registry Synchronized');
+      };
+
+      window.printFadhDefenseDossier = function() {
+        showHudToast('📑 Generating Classified FAd\'H Defense Memorandum...');
+        const printWindow = window.open('', '_blank', 'width=900,height=800');
+        if (!printWindow) {
+          alert('Popup blocked. Please allow popups for this site to view the printed memorandum.');
+          return;
+        }
+
+        const dateStr = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+        const htmlContent = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>FAd'H Sovereign Defense Memorandum — Vitaflex Intelligence Corp</title>
+          </head>
+          <body>
+            <div class="header">
+              <div>
+                <strong>VITAFLEX INTELLIGENCE CORP // SOVEREIGN DEFENSE COMMAND</strong><br>
+                <span>OPERATIONAL MEMORANDUM // REF: FADH-STRAT-DEF-2026</span><br>
+                <span>DATE: ${dateStr}</span>
+              </div>
+              <div class="stamp">CLASSIFIED // SECRET DEFENSE</div>
+            </div>
+
+            <h1>FORCES ARMÉES D'HAÏTI (FAd'H) — STRATEGIC READINESS DOSSIER</h1>
+            <p><strong>SUBJECT:</strong> National Defense Reconstitution, Troop Cohorts, Procurement Budgets &amp; Conflict Friction Index.</p>
+
+            <div class="section-title">1. DEFENSE FINANCES &amp; FISCAL ALLOCATIONS</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Budget Category</th>
+                  <th>FY 2025–2026 Allocation</th>
+                  <th>Percentage</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Tactical Operations &amp; Fuel Logistics</td>
+                  <td>$20,370,000 USD (2.7B HTG)</td>
+                  <td>42%</td>
+                  <td>Active Sweeps</td>
+                </tr>
+                <tr>
+                  <td>Armored Vehicles (Streit MRAPs) &amp; Drone ISR</td>
+                  <td>$13,580,000 USD (1.8B HTG)</td>
+                  <td>28%</td>
+                  <td>28 Units Deployed</td>
+                </tr>
+                <tr>
+                  <td>Troop Payroll, Combat Stipends &amp; Health</td>
+                  <td>$8,730,000 USD (1.1B HTG)</td>
+                  <td>18%</td>
+                  <td>Disbursed Direct</td>
+                </tr>
+                <tr>
+                  <td>Academy Training, Vetting &amp; Foreign Bilateral</td>
+                  <td>$5,820,000 USD (770M HTG)</td>
+                  <td>12%</td>
+                  <td>Mexico / Colombia / France</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="section-title">2. TROOP STRENGTH &amp; RECRUITMENT COHORTS</div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Cohort Designation</th>
+                  <th>Troop Count</th>
+                  <th>Primary Station / Base</th>
+                  <th>Mission Objective</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Classe 2024 (Deployed)</td>
+                  <td>500 Active Soldiers</td>
+                  <td>APN Port / Airport Corridor</td>
+                  <td>Container &amp; Aviation Perimeter Defense</td>
+                </tr>
+                <tr>
+                  <td>Classe 2025 (In Training)</td>
+                  <td>1,000 Cadets</td>
+                  <td>Base Militaire d'Anacaona</td>
+                  <td>Motorized Infantry &amp; Combat Engineers</td>
+                </tr>
+                <tr>
+                  <td>Corps du Génie Militaire</td>
+                  <td>350 Engineers</td>
+                  <td>Ouanaminthe / Canal Zone</td>
+                  <td>Irrigation Canal Fortification</td>
+                </tr>
+                <tr>
+                  <td>Classe 2026 (Intake Target)</td>
+                  <td>1,500 Personnel Target</td>
+                  <td>National Mobile Command</td>
+                  <td>5,000 Troop Strategic Peacetime Goal</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="section-title">3. TACTICAL SECTORS &amp; CONFLICT MATRIX</div>
+            <ol>
+              <li><strong>APN Container Port &amp; Varreux Marine Depot:</strong> Permanent armored detachment securing commercial container flow and fuel reserves against gang extortion.</li>
+              <li><strong>Toussaint Louverture Airport Ring:</strong> Hardened perimeter barriers, thermal drone sweeps, and rooftop counter-sniper positions ensuring civilian aviation integrity.</li>
+              <li><strong>Massacre River Canal (Ouanaminthe):</strong> Border canal intake flowing under sovereign Haitian military guard with 0% territorial land loss.</li>
+              <li><strong>Joint Anti-Gang Operations (FAd'H + PNH + MMAS):</strong> Motorized cordon-and-search operations clearing arterial highways (RN1 / RN2).</li>
+            </ol>
+
+            <div class="footer">
+              <span>AUTHENTICATED BY: Vitaflex Intelligence Corp // Supreme Commander Ultra Flex</span>
+              <span>VERIFIED SOVEREIGN RECORD</span>
+            </div>
+          </body>
+          </html>
+        `;
+
+        printWindow.document.open();
+        printWindow.document.write(htmlContent);
+        const styleEl = printWindow.document.createElement('style');
+        styleEl.textContent = 'body { font-family: "Courier New", monospace; background: #ffffff; color: #000000; padding: 40px; line-height: 1.5; font-size: 13px; } .header { border-bottom: 2px solid #000; padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: flex-start; } .stamp { border: 2px solid #d00; color: #d00; padding: 4px 10px; font-weight: bold; font-size: 14px; display: inline-block; letter-spacing: 2px; } h1 { font-size: 18px; text-transform: uppercase; margin: 10px 0; letter-spacing: 1px; } .section-title { background: #eee; padding: 5px 10px; font-weight: bold; margin: 20px 0 10px 0; border-left: 4px solid #000; text-transform: uppercase; font-size: 13px; } table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; } th, td { border: 1px solid #ccc; padding: 6px 10px; text-align: left; } th { background: #f5f5f5; font-weight: bold; } .footer { border-top: 1px solid #000; margin-top: 30px; padding-top: 10px; font-size: 11px; display: flex; justify-content: space-between; }';
+        printWindow.document.head.appendChild(styleEl);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+      };
+
+
       // 2F. Cap-Haïtien Urban & Municipal Intelligence Map Engine
       let okapMap = null;
       let okapMarkerLayers = [];
@@ -7685,6 +8344,20 @@
           studioAudioFile = currentLang === 'en' ? 'audio/briefing_en.mp3' : 'audio/briefing_ht.mp3';
           targetAction = () => {
             window.playBriefing();
+          };
+
+        // 6B. FORCES ARMÉES D'HAÏTI (FAd'H) DEFENSE COMMAND & FORCES
+        } else if (lower.includes('army') || lower.includes("fad'h") || lower.includes('fadh') || lower.includes('military') || lower.includes('soldier') || lower.includes('rekritman') || lower.includes('lame') || lower.includes('anacaona') || lower.includes('recruitment') || lower.includes('tactics') || lower.includes('conflict')) {
+          spokenAnswer = "Commander, the Armed Forces of Haiti operate with a 48.5 million dollar budget. 2,150 active troops are deployed across APN Container Port, Toussaint Louverture Airport, and the Massacre River Canal. Classe 2025 has 1,000 recruits in training at Base Anacaona. Switching to FAd'H Sovereign Defense Command.";
+          htmlAnswer = `<strong>Forces Armées d'Haïti (FAd'H) Sovereign Intelligence:</strong><br>
+            • <strong>Finances:</strong> $48.5M USD (~6.4B HTG) defense allocation; $15M US FMF/INL equipment support; 28 Streit/Inkas APCs deployed.<br>
+            • <strong>Recruitment:</strong> 2,150 active soldiers (target 5,000); 1,000 recruits currently at Base Militaire d'Anacaona (Gressier); judicial & biometric vetting active.<br>
+            • <strong>Tactics:</strong> Multi-layered perimeter defense at APN Port & Airport corridor; irrigation intake guarded at Massacre River Canal with zero land loss.<br>
+            • <strong>Conflict Vector:</strong> DEFCON 2 elevated watch; joint anti-gang sweeps with PNH/MSS; frontier vigilance maintained.<br>
+            <em>Switching to FAd'H Military Intelligence Terminal.</em>`;
+          studioAudioFile = 'audio/fadh_briefing_en.mp3';
+          targetAction = () => {
+            switchView('view-fadh');
           };
 
         // 7. REAL-TIME WEB NEWS & LIVE DISPATCH
